@@ -26,6 +26,9 @@ function App() {
       {qrCode && (
         <>
           <img src={qrCode} />
+          <a href={qrCode} download="qrCode.png">
+            Download
+          </a>
         </>
       )}
     </div>
