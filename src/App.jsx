@@ -6,19 +6,27 @@ function App() {
   const [qrCode, setQrCode] = useState("");
 
   const GenerateQRCode = () => {
-    QRCode.toDataURL(url, (err, url) => {
-      if (err) return console.error(err);
-
-      console.log(url);
-      setQrCode(url);
-    });
+    QRCode.toDataURL(
+      url,
+      {
+        width: 800,
+        margin: 1,
+        color: {
+          dark: "#335383ff",
+        },
+      },
+      (err, url) => {
+        if (err) return console.error(err);
+        setQrCode(url);
+      }
+    );
   };
   return (
     <div className="app">
       <h1>QR Code Generator</h1>
       <input
         type="text"
-        placeholder="ex. https;//google.com"
+        placeholder="ex. https://google.com"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
@@ -26,7 +34,7 @@ function App() {
       {qrCode && (
         <>
           <img src={qrCode} />
-          <a href={qrCode} download="qrCode.png">
+          <a href={qrCode} download="qrcode.png">
             Download
           </a>
         </>
